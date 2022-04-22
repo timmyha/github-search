@@ -6,7 +6,8 @@ const GithubContext = createContext()
 
 export const GithubProvider = ({children}) => {
     const initialState = {
-        userData: []
+        userData: [],
+        user: {}
     }
 
     const [state, dispatch] = useReducer(githubReducer, initialState)
@@ -30,11 +31,25 @@ export const GithubProvider = ({children}) => {
         })
     }
 
+    const getUser = login => {
+        axios.get(
+                `https://api.github.com/users/${login}`
+            )
+            .then(res => {
+        dispatch({
+          type: `GET_USER`,
+          payload: res.data
+        })})
+      };
+    
+
     return <GithubContext.Provider 
                 value={{ 
                     userData: state.userData.items, 
+                    user: state.user,
                     searchUsers,
-                    clearUsers
+                    clearUsers,
+                    getUser
                     }}>
                     {children}
             </GithubContext.Provider>

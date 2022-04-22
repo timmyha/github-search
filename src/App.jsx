@@ -8,6 +8,9 @@ import NotFound from './pages/NotFound'
 import { Route, Routes } from 'react-router-dom'
 import theme from 'styled-theming';
 import { GithubProvider } from './context/github/GithubContext'
+import { AlertProvider } from './context/alerts/AlertContext'
+import Alert from './components/Alert'
+import User from './pages/User'
 
 function App() {
   const [darkMode, setDarkMode] = useState(false)
@@ -19,20 +22,24 @@ function App() {
 
   return (
     <GithubProvider>
-      <ThemeProvider theme={darkMode ? { mode: 'dark' } : { mode: 'light' }}>
-        <Main>
-          <Navbar
-            toggleDarkMode={toggleDarkMode} />
-          <Body>
-            <Routes>
-              <Route path='/' element={<Home />} />
-              <Route path='about' element={<About />} />
-              <Route path='*' element={<NotFound />} />
-            </Routes>
-          </Body>
-          <Footer />
-        </Main>
-      </ThemeProvider>
+      <AlertProvider>
+        <ThemeProvider theme={darkMode ? { mode: 'dark' } : { mode: 'light' }}>
+          <Main>
+            <Navbar
+              toggleDarkMode={toggleDarkMode} />
+            <Body>
+              <Alert />
+              <Routes>
+                <Route path='/users/:login' element={<User />} />
+                <Route path='/' element={<Home />} />
+                <Route path='about' element={<About />} />
+                <Route path='*' element={<NotFound />} />
+              </Routes>
+            </Body>
+            <Footer />
+          </Main>
+        </ThemeProvider>
+      </AlertProvider>
     </GithubProvider>
 
   )

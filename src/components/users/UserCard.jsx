@@ -1,20 +1,25 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
-const UserCard = ( {userData} ) => {
+const UserCard = ({ userData }) => {
 
     return (
+        <Link to={`/users/${userData.login}`}>
         <Main className='card-main'>
-           <ViewProfile className="view-profile">view profile</ViewProfile>
-           <Images>
-        <Avatar className='card-avatar' src={userData.avatar_url} />
-        <Card style={{"backgroundImage":`url(${userData.avatar_url})`}} />  
-        </Images>
-        <UserName>{userData.login}</UserName>
+            <ViewProfile className="view-profile">view profile</ViewProfile>
+            <Images>
+                <Avatar 
+                    className='card-avatar' 
+                    src={userData.avatar_url} />
+                <Card style={{ "backgroundImage": `url(${userData.avatar_url})` }} />
+            </Images>
+            <UserName>{userData.login}</UserName>
         </Main>
+        </Link>
     )
 }
 
-const ViewProfile = styled.a`
+const ViewProfile = styled.div`
     position:absolute;
     color: white;
     margin-left: 60px;

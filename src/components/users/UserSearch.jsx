@@ -1,14 +1,14 @@
 import styled from 'styled-components'
 import { useState, useContext } from 'react'
 import GithubContext from '../../context/github/GithubContext'
+import AlertContext from '../../context/alerts/AlertContext'
 
 const UserSearch = () => {
 
     const [searchField, setSearchField] = useState('')
 
     const { userData, searchUsers, clearUsers } = useContext(GithubContext)
-
-    console.log(userData)
+    const { setAlert } = useContext(AlertContext)
 
     const handleSearchChange = (e) => {
         setSearchField(e.target.value)
@@ -16,9 +16,10 @@ const UserSearch = () => {
 
     const handleSearchSubmit = (e) => {
         e.preventDefault()
-        searchField.length > 1 &&
-        searchUsers(searchField)
-        
+        searchField.length > 1
+            ? searchUsers(searchField)
+            : setAlert('search error: try being more specific', 'error')
+
         setSearchField('')
     }
 
@@ -31,7 +32,10 @@ const UserSearch = () => {
                     placeholder="search Github" />
 
                 <SearchButton>&nbsp;&gt;&nbsp;</SearchButton>
-                {userData && <ClearButton onClick={clearUsers}>Clear</ClearButton>}
+                {userData &&
+                    <ClearButton onClick={clearUsers}>
+                        Clear
+                    </ClearButton>}
 
 
             </form>
@@ -43,23 +47,31 @@ const SearchButton = styled.button`
     background-color: #fc7686;
     color: white;
     border: none;
-    padding: 3px;
-    border-radius: 3px 3px 3px 0px;
+    padding: 5px;
+    margin-left: 3px;
+    border-radius: 3px 3px 3px 3px;
+    transition: .1s;
     cursor: pointer;
         &:hover {
             opacity: .5;
+        }
+        &:active {
+            opacity: .8;
         }`
 
 const ClearButton = styled.button`
     background-color: #3d3433;
     color: white;
     border: none;
-    padding: 3px;
+    padding: 5px;
     margin-left: 3px;
     border-radius: 3px;
+    transition: .1s;
     cursor: pointer;
          &:hover {
             opacity: .5;
+        }&:active {
+            opacity: .8;
         }`
 
 const Search = styled.input`

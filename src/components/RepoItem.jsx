@@ -37,11 +37,14 @@ const RepoItem = ( {repo} ) => {
         }
     }
 
+    console.log(repo)
+
     return (
     <RepoCard>
+        <a href={repo.html_url}>
         <CardTop>
             <RepoName>
-                {repo.name}
+            {repo.name}
             </RepoName>
             <RepoStats>
                 <CgGitFork 
@@ -64,6 +67,7 @@ const RepoItem = ( {repo} ) => {
             </RepoDesc>
             <RepoLang>{repoLangSwitch(repo.language)}</RepoLang>
         </CardBottom>
+        </a>
     </RepoCard>
     )
 }
@@ -83,7 +87,7 @@ const CardTop = styled.div`
     width: 100%;
     flex-direction: row;
     justify-content: space-between;
-    border-bottom: 1px black dashed;
+    border-bottom: 1px dashed;
 `
 
 const RepoName = styled.h2`

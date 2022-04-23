@@ -13,47 +13,58 @@ import Alert from './components/Alert'
 import User from './pages/User'
 
 function App() {
-  const [darkMode, setDarkMode] = useState(false)
+    const [darkMode, setDarkMode] = useState(false)
 
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode)
-    console.log(darkMode)
-  }
+    const toggleDarkMode = () => {
+        setDarkMode(!darkMode)
+    }
 
-  return (
-    <GithubProvider>
-      <AlertProvider>
-        <ThemeProvider theme={darkMode ? { mode: 'dark' } : { mode: 'light' }}>
-          <Main>
-            <Navbar
-              toggleDarkMode={toggleDarkMode} />
-            <Body>
-              <Alert />
-              <Routes>
-                <Route path='/users/:login' element={<User />} />
-                <Route path='/' element={<Home />} />
-                <Route path='about' element={<About />} />
-                <Route path='*' element={<NotFound />} />
-              </Routes>
-            </Body>
-            <Footer />
-          </Main>
-        </ThemeProvider>
-      </AlertProvider>
-    </GithubProvider>
+    return (
+        <GithubProvider>
+            <AlertProvider>
+                <ThemeProvider theme={darkMode 
+                                    ? { mode: 'dark' } 
+                                    : { mode: 'light' }}>
+                    <Main>
+                        <Navbar
+                            toggleDarkMode={toggleDarkMode} />
+                        <Body>
+                            <Alert />
+                            <Routes>
+                                <Route 
+                                    path='/users/:login' 
+                                    element={<User />} />
+                                <Route 
+                                    path='/' 
+                                    element={<Home />} />
+                                <Route 
+                                    path='about' 
+                                    element={<About />} />
+                                <Route 
+                                    path='*' 
+                                    element={<NotFound />} />
+                            </Routes>
+                        </Body>
+                        <Footer />
+                    </Main>
+                </ThemeProvider>
+            </AlertProvider>
+        </GithubProvider>
 
-  )
+    )
 }
 
 const mainBgColor = theme('mode', {
-  light: '#f9f0e3',
-  dark: '#504847',
+    light: '#f9f0e3',
+    dark: '#504847',
 });
 
-const mainTextColor = theme('mode', {
-  light: '#504847',
-  dark: '#efdfc9',
+const primaryText = theme('mode', {
+    light: '#504847',
+    dark: '#efdfc9',
 });
+
+
 
 const Main = styled.div`
   display: flex;
@@ -63,7 +74,7 @@ const Main = styled.div`
 const Body = styled.div`
   background-color: ${mainBgColor};
   min-height: 81.5vh;
-  color: ${mainTextColor};
+  color: ${primaryText};
   transition: .3s;
   `;
 

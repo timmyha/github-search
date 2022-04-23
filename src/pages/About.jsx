@@ -10,7 +10,7 @@ const About = () => {
                 <PageContent>
                     <p>Easily search user profiles on Github, view
                     account information and recent repositories. <br /><br />
-                    GithubSearch is created in maintained 
+                    GithubSearch is created and maintained 
                     by <a href="https://github.com/timmyha/">@timmyha</a>.</p>
 
                 </PageContent>

@@ -7,13 +7,11 @@ const GithubContext = createContext()
 export const GithubProvider = ({children}) => {
     const initialState = {
         userData: [],
-        user: {}
+        user: {},
+        repos: []
     }
 
     const [state, dispatch] = useReducer(githubReducer, initialState)
-
-    console.log(state)
-
     const searchUsers = searchField => {
         axios.get(
                 `https://api.github.com/search/users?q=${searchField}`
@@ -41,15 +39,29 @@ export const GithubProvider = ({children}) => {
           payload: res.data
         })})
       };
+
+      const getRepo = login => {
+        axios.get(
+                `https://api.github.com/users/${login}/repos`
+            )
+            .then(res => {
+        dispatch({
+          type: `GET_REPO`,
+          payload: res.data
+        })
+      })
+      };
     
 
     return <GithubContext.Provider 
                 value={{ 
                     userData: state.userData.items, 
                     user: state.user,
+                    repos: state.repos,
                     searchUsers,
                     clearUsers,
-                    getUser
+                    getUser,
+                    getRepo,
                     }}>
                     {children}
             </GithubContext.Provider>

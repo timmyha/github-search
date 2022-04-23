@@ -8,7 +8,7 @@ import { AiOutlineTwitter } from 'react-icons/ai'
 import { MdOutlineWebAsset } from 'react-icons/md'
 import { BiGitRepoForked } from 'react-icons/bi'
 import { BsFileEarmarkCode } from 'react-icons/bs'
-import { FaUsers, FaUser, FaAddressCard } from 'react-icons/fa'
+import { FaUsers, FaUser } from 'react-icons/fa'
 
 const User = () => {
 

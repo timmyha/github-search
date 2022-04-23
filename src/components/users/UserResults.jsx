@@ -8,9 +8,6 @@ const UserResults = () => {
 
     const { userData } = useContext(GithubContext)
 
-    console.log(userData)
-
-
     let userDisplayData = userData && userData.map(user => (
             <UserCard 
                 key={user.login}

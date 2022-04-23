@@ -13,7 +13,8 @@ const UserCard = ({ userData }) => {
                     src={userData.avatar_url} />
                 <Card style={{ "backgroundImage": `url(${userData.avatar_url})` }} />
             </Images>
-            <UserName>{userData.login}</UserName>
+            <UserName />
+            <UserNameText>{userData.login}</UserNameText>
         </Main>
         </Link>
     )
@@ -21,17 +22,20 @@ const UserCard = ({ userData }) => {
 
 const ViewProfile = styled.div`
     position:absolute;
+    background-color: #fc7686;
     color: white;
-    margin-left: 60px;
-    margin-top: 70px;
+    border-radius: 20px;
+    padding: 10px;
+    margin-left: 50px;
+    margin-top: 60px;
     z-index: 10000;
     cursor: pointer;
+    filter: drop-shadow(0px 10px 10px black)
 `
 
 const Images = styled.div`
     transition: .5s;
     &: hover {
-    filter: drop-shadow(0px 10px 10px black) grayscale(100%) contrast(30%)
     }
  `
 
@@ -39,9 +43,9 @@ const Main = styled.div`
     display: flex;
     flex-direction: column;
     &:hover {
-    transition: .3s;
-    transform: translateY(-3px);
-    cursor: pointer;
+        transition: .3s;
+        transform: translateY(-3px);
+        cursor: pointer;
 `
 
 const Card = styled.div`
@@ -71,16 +75,28 @@ const Avatar = styled.img`
 
 const UserName = styled.div`
     display: flex;
-    font-size: 1.3em;
-    font-family: Raleway;
-    font-weight: 900;
-    padding: 5px;
-    border-radius: 6px;
     margin: auto;
+    background-color: black;
+    width: 200px;
+    height: 35px;
+    border-radius: 0 0 10px 10px;
+    opacity: .6;
     margin-top: -35px;
-    color: #fc7686;
-    filter: drop-shadow(0px 10px 10px black);
     z-index: 4;
+    &:hover {
+        filter; none;
+    }
     `
+const UserNameText = styled.div`
+position: absolute;
+display: flex;
+color: #fc7686;
+font-size: 1.3em;
+font-family: Raleway;
+font-weight: 900;
+margin-top: 150px;
+margin-left: 10px;
+align-content: center;
+z-index: 10000000`
 
 export default UserCard

@@ -19,8 +19,9 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
                     }}
                         to='/'>
                         <FaGithub style={{ "color": "#fc7686" }} />
-                        <b>Github</b>
-                        <span style={{ "color": "#fc7686" }}>
+                        <b style={{"fontFamily":"Raleway"}}>Github</b>
+                        <span 
+                        style={{ "color": "#fc7686", "fontFamily":"Raleway" }}>
                             Search
                         </span>
                     </Link>
@@ -63,15 +64,13 @@ const Nav = styled.div`
     align-items: center;
     width: 100vw;
     height: 80px;
-    min-height: 80px;
     font-size: 20px;
     color: #fcf2e5;
     background-color: #3d3433;
     user-select: none;
-    @media (max-width: 400px) {
+    @media (max-width: 420px) {
         flex-direction: column;
-        height: 30%;
-        min-height: 25%;  
+        height: 200px;  
     }
     filter: drop-shadow(0 0 0.5rem #3d3433);
     `;
@@ -86,7 +85,7 @@ const DarkModeToggler = styled.div`
         color: #fc7686;
         }
     }
-    @media (max-width: 400px) {
+    @media (max-width: 420px) {
         margin-top: 10px;
         margin-bottom: -30px;
         margin-left: 0px;
@@ -96,9 +95,10 @@ const DarkModeToggler = styled.div`
 
 const NavLogo = styled.div`
     display: flex;
+    font-family: Karla;
     margin-left: 50px;
     cursor: pointer;
-    @media (max-width: 400px) {
+    @media (max-width: 420px) {
         margin-bottom: -20px;
         margin-left: 0px;
     }
@@ -109,7 +109,8 @@ const NavLinks = styled.div`
     flex-direction: row;
     list-style: none;
     font-size: 15px;
-    @media (max-width: 400px) {
+    margin-right: 10px;
+    @media (max-width: 420px) {
         flex-direction: column;
         margin-top: -20px;
     }
@@ -127,7 +128,7 @@ const LinksButton = styled.button`
     transition: .4s;
     border-radius: 3px;
     &:hover {
-        color: black;
+        color: #504847;
         background-color: #fc7686;
         align-items: center;
         height: 100%;

@@ -14,7 +14,7 @@ const User = () => {
 
     const params = useParams()
     const { getUser, user, getRepo, repos } = useContext(GithubContext)
-    
+
     useEffect(() => {
         getUser(params.login)
         getRepo(params.login)
@@ -33,26 +33,52 @@ const User = () => {
                         <DisplayName>{user.name} </DisplayName>
                         <UserName>{user.login}</UserName>
                     </Names>
-                    { user.location &&
-                    <Location>
-                        <RiMapPin2Fill /> &nbsp;{user.location}</Location>}
-                    { user.twitter_username &&
-                    <TwitterLink>
-                        <AiOutlineTwitter /> &nbsp;@{user.twitter_username}</TwitterLink>}
-                    { user.html_url &&
-                    <UrlLink>
-                        <MdOutlineWebAsset />&nbsp;{user.html_url}</UrlLink>}
+                    {user.location &&
+                        <Location>
+                            <RiMapPin2Fill /> &nbsp;{user.location}</Location>}
+                    {user.twitter_username &&
+                        <TwitterLink onClick={() => {
+                            window.open(
+                                `https://twitter.com/${user.twitter_username}`
+                            )
+                        }}>
+                            <AiOutlineTwitter />
+                            &nbsp;@{user.twitter_username}
+                        </TwitterLink>}
+                    {user.html_url &&
+                        <UrlLink onClick={() => {
+                            window.open(
+                                `${user.html_url}`
+                            )
+                        }}>
+                            <MdOutlineWebAsset />&nbsp;{user.html_url}</UrlLink>}
                 </InfoDiv>
             </UserContainer>
             <StatsDiv>
                 <FaUser size="30px" />
-                    <StatsText>{user.following} following</StatsText>
-                <FaUsers size="30px" /> 
-                    <StatsText>{user.followers} followers</StatsText>
-                <BiGitRepoForked size="30px" /> 
-                    <StatsText>{user.public_repos} {repoDisplay} </StatsText>
-                <BsFileEarmarkCode size="30px" /> 
-                    <StatsText>{user.public_gists} {gistDisplay}</StatsText>
+                <StatsText onClick={() => window.open(
+                    `https://github.com/${user.login}?tab=following`
+                )}>
+                    {user.following} following
+                </StatsText>
+                <FaUsers size="30px" />
+                <StatsText onClick={() => window.open(
+                    `https://github.com/${user.login}?tab=followers`
+                )}>
+                    {user.followers} followers
+                </StatsText>
+                <BiGitRepoForked size="30px" />
+                <StatsText onClick={() => window.open(`
+                https://github.com/${user.login}?tab=repositories`
+                )}>
+                    {user.public_repos} {repoDisplay}
+                </StatsText>
+                <BsFileEarmarkCode size="30px" />
+                <StatsText onClick={() => window.open(`
+                https://github.com/${user.login}?tab=gists`
+                )}>
+                    {user.public_gists} {gistDisplay}
+                </StatsText>
             </StatsDiv>
             <RepoList repos={repos} />
         </Container>
